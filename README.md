@@ -96,7 +96,7 @@ use rnaligner::io::parse_fasta;
 use rnaligner::benchmark::Benchmark;
 
 // Load sequences from a file (395 is the max my machine can handle with Nussinov)
-let seq_list: Vec<RnaSequence> = parse_fasta("data/trna_unmodified_dot_bracket.txt", 395);
+let seq_list: Vec<RnaSequence> = parse_fasta("data/trna_unmodified_dot_bracket.txt", 100);
 
 // Create and run the benchmark
 let bench = Benchmark::new(seq_list);
