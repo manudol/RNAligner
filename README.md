@@ -56,7 +56,7 @@ let _ = vienna_score.expect("error vienna").repr();
 
 The scores will tell us how accurate each algorithm is compared to the experimental structure.
 
-You see something that looks like this:
+You should see something that looks like this:
 ```
 ========== Example for id: 123 =============
 Algorithm used: nussinov
@@ -71,6 +71,22 @@ Matches:             ||||||||||||||||||||||   ||    |       ||               |||
 Match score:         56.72%
 
 ```
+
+### Public associated methods on Score
+
+```rust
+
+pub struct Score
+pub fn new(seq: RnaSequence, algo: &str) -> Result<Self, Box<dyn std::error::Error>>
+pub fn get_id(&self) -> Result<&str, Box<dyn std::error::Error>>
+pub fn get_seq(&self) -> Result<&str, Box<dyn std::error::Error>>
+pub fn get_algo(&self) -> Result<String, Box<dyn std::error::Error>>
+pub fn get_score(&self) -> Result<String, Box<dyn std::error::Error>>
+pub fn get_exp_fold(&self) -> Result<f64, Box<dyn std::error::Error>>
+pub fn get_fold(&self) -> Result<f64, Box<dyn std::error::Error>>
+pub fn repr(&self) -> Result<(), Box<dyn std::error::Error>>
+```
+
 ## Running benchmarks on multiple sequences
 
 If you wanna test a bunch of RNA sequences at once (which is way more useful), here's how:
@@ -87,7 +103,7 @@ let bench = Benchmark::new(seq_list);
 bench.repr();
 ```
 
-You see something that looks like this:
+You should see something that looks like this:
 ```
 =========== Benchmark matching scores for VIENNARNA and NUSSINOV algo ==========
 Average Match Score for nussinov:  50.26%
@@ -141,6 +157,19 @@ Quantity: 100
 4. 41.7% tdbR00000409
 5. 44.4% tdbR00000398
 
+```
+
+### Public associated methods on Benchmark
+
+```rust
+
+pub struct Benchmark
+pub fn new(seq_list: Vec<RnaSequence>) -> Self
+pub fn score_distribution(&self, algo: &str) -> Result<(), Box<dyn std::error::Error>>
+pub fn min_max(&self, algo: &str)
+pub fn top_five(&self, algo: &str)
+pub fn bottom_five(&self, algo: &str)
+pub fn repr(&self)
 ```
 
 ## What's going on under the hood?

@@ -83,8 +83,20 @@ impl Score {
         Ok(&self.seq)
     }
 
-    pub fn get_score(&self) -> Result<f64, Box<dyn std::error::Error>> {
+    pub fn get_algo(&self) -> Result<String, Box<dyn std::error::Error>> {
+        Ok(&self.algo)
+    }
+
+    pub fn get_score(&self) -> Result<String, Box<dyn std::error::Error>> {
         Ok(self.score as f64)
+    }
+    
+    pub fn get_exp_fold(&self) -> Result<f64, Box<dyn std::error::Error>> {
+        Ok(self.exp_fold)
+    }
+    
+    pub fn get_fold(&self) -> Result<f64, Box<dyn std::error::Error>> {
+        Ok(self.fold)
     }
 
     pub fn repr(&self) -> Result<(), Box<dyn std::error::Error>> {
